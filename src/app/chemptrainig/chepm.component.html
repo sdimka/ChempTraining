@@ -96,19 +96,22 @@
             <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Даты тренеровок
+                        Даты тренировок
                     </mat-panel-title>
                     <mat-panel-description>
-                        Укажите желаемые даты тренеровок
+                        Укажите желаемые даты тренировок
                         <mat-icon>date_range</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
+                {{selectedTrainig.name}} <br>
+                Тренер: {{selectedTrainig.trainer}} <br>
+                Укажите даты:
                 <!-- <div *ngIf="selectedTrainig != undefined"> -->
-                    <div *ngFor="let dateF of selectedTrainig.datesFirst">
-                    <mat-form-field >
-                        {{dateF.date}}
-                        gggg
-                    </mat-form-field>
+                <div *ngFor="let dateF of selectedTrainig.datesFirst">
+
+                    <mat-checkbox [(ngModel)]="dateF.selected"> </mat-checkbox>
+                    {{dateF.date}}
+
                 </div>
                 <!-- </div> -->
 
@@ -129,13 +132,24 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <mat-form-field>
-                    <input matInput placeholder="Имя">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Фамелия">
-                </mat-form-field>
-                <mat-datepicker #picker></mat-datepicker>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Имя">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Фамилия">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Телефон">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="e-mail">
+                    </mat-form-field>
+                </div>
+
+                <!-- <mat-datepicker #picker></mat-datepicker> -->
 
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Пред.</button>

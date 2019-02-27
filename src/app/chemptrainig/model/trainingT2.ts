@@ -1,11 +1,11 @@
-import { Training, date } from './training';
- 
+import { Training } from './training';
+import { date } from './date';
 
-export class Training1 extends Training {
-    name: 'ВИЗАЖ - Подиумный макияж. Боди-арт. Макияж новобрачной'
-    trainer: 'Казьмина Лариса'
+export class TrainingT2 extends Training {
+    name: string =  'МУЖСКИЕ МАСТЕРА – ТЕХНИКА'
+    trainer: string =  'Маслеников Владимир'
 
-    datesFirst: [
+    datesFirst: date[] = [
         { date: '01.03 (10:00 – 16:00)', selected: false },
         { date: '02.03 (10:00 – 16:00)', selected: false },
         { date: '04.03 (10:00 – 16:00)', selected: false },
@@ -21,6 +21,5 @@ export class Training1 extends Training {
         { date: '17.04 (10:00 – 16:00)', selected: false },
         { date: '18.04 (10:00 – 16:00)', selected: false }
     ]
-
 
 }

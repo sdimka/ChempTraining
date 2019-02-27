@@ -2,8 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Training } from './model/training';
-import { Training1 } from './model/training1';
-import { Training2 } from './model/training2';
+//import { date } from "./model/date";
+import { TrainingT1 } from './model/trainingT1';
+import { TrainingT2 } from "./model/trainingT2";
+import { TrainingT3 } from "./model/trainingT3";
+import { TrainingT4 } from "./model/trainingT4";
+import { TrainingT5 } from "./model/trainingT5";
 import { User } from './model/user';
 import { TrainigTypes } from './model/trainigTypes';
 
@@ -16,7 +20,7 @@ import { TrainigTypes } from './model/trainigTypes';
 })
 
 export class ChempComponent implements OnInit {
-  isLinear = true;
+  
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
@@ -37,6 +41,9 @@ export class ChempComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+
+    this.trainingTypes = new TrainigTypes();
+    this.selectedTrainig = new TrainingT1();
 
   }
 
@@ -62,19 +69,23 @@ export class ChempComponent implements OnInit {
   selectTrainig(selectedOption: number) {
     switch (selectedOption) {
       case 0: {
-        this.selectedTrainig = new Training1();
+        this.selectedTrainig = new TrainingT1();
         break;
       }
       case 1: {
-        this.selectedTrainig = new Training2();
+        this.selectedTrainig = new TrainingT2();
         break;
       }
       case 2: {
-        this.selectedTrainig = new Training1();
+        this.selectedTrainig = new TrainingT3();
         break;
       }
       case 3: {
-        this.selectedTrainig = new Training2();
+        this.selectedTrainig = new TrainingT4();
+        break;
+      }
+      case 4: {
+        this.selectedTrainig = new TrainingT5();
         break;
       }
     }
@@ -92,7 +103,6 @@ export class ChempComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.trainingTypes = new TrainigTypes;
-this.selectedTrainig = new Training1();
+    
   }
 }
