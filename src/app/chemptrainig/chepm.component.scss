@@ -1,0 +1,23 @@
+.setOne{
+    max-width: 650px;
+    margin-bottom: 15px
+}
+
+.headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .radio-button {
+    margin: 5px;
+  }
+  
+.viewer-title{
+    background: rgba(0, 0, 0, 0.03);
+    padding-top: 10px;
+}

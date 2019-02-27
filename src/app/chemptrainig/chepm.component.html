@@ -1,0 +1,150 @@
+<div class="content" fxLayout="column wrap" fxLayout.lt-md="row wrap" [ngStyle.lt-md]="{'overflow': 'scroll'}"
+    fxLayoutAlign="space-around center">
+
+    <!-- 
+[ngStyle]="{'max-width.px': 700}"
+
+     -->
+
+    <div>
+        <h3>ТРЕНИРОВКИ ДЛЯ КОНКУРСАНТОВ</h3>
+    </div>
+
+    <mat-card class="setOne">
+        <mat-card-title>XXI Чемпионата Санкт-Петербурга по парикмахерскому искусству,
+            декоративной косметике, дизайну и моделированию ногтей 19 апреля 2019 года
+        </mat-card-title>
+        <mat-card-content>
+            Адрес проведения тренировок: Санкт-Петербург, Заневский пр. д. 37, 2 этаж, Академия «Май» <br>
+            Стоимость тренировок: <br>
+            Март: <br>
+            Март: взрослые – 500 рублей; юниоры – бесплатно.<br>
+            Вход на тренировки только по предварительной записи. <br>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card [ngStyle]="{'max-width.px': '450px'}">
+
+        <mat-card-header class="viewer-title">
+            <mat-card-title>Форма регистрации</mat-card-title>
+        </mat-card-header>
+
+
+        <mat-accordion class="headers-align">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Выбор категории
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Укажите вашу категорию
+                        <mat-icon>category</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <!-- <mat-form-field>
+                    <input matInput placeholder="First name">
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="number" min="1" placeholder="Age">
+                </mat-form-field> -->
+
+
+                <mat-radio-group [(ngModel)]="classType">
+                    <mat-radio-button class="radio-button" value="1">Взрослые</mat-radio-button>
+                    <mat-radio-button class="radio-button" value="2">Юниоры</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="nextStep()">Далее</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Направление тренировок:
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Укажите направление
+                        <mat-icon>map</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <!-- <mat-form-field>
+                    <input matInput placeholder="Country">
+                </mat-form-field> -->
+
+                <mat-radio-group class="radio-group" [(ngModel)]="selectedTT">
+                    <mat-radio-button class="radio-button" *ngFor="let tt of trainingTypes.tType; let i = index"
+                        [value]="i">
+                        <!-- [value]="season" -->
+                        {{tt}}
+                    </mat-radio-button>
+                </mat-radio-group>
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Пред.</button>
+                    <button mat-button color="primary" (click)="nextStepAndSet()">Далее</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Даты тренеровок
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Укажите желаемые даты тренеровок
+                        <mat-icon>date_range</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- <div *ngIf="selectedTrainig != undefined"> -->
+                    <div *ngFor="let dateF of selectedTrainig.datesFirst">
+                    <mat-form-field >
+                        {{dateF.date}}
+                        gggg
+                    </mat-form-field>
+                </div>
+                <!-- </div> -->
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Пред.</button>
+                    <button mat-button color="primary" (click)="nextStep()">Далее</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Контактные данные
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Представьтесь, пожалуйста
+                        <mat-icon>face</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                    <input matInput placeholder="Имя">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Фамелия">
+                </mat-form-field>
+                <mat-datepicker #picker></mat-datepicker>
+
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Пред.</button>
+                    <button mat-button color="primary" (click)="nextStep()">Отправить</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </mat-card>
+
+</div>
+<button mat-button color="warn" (click)="testClick()">Тестовая кнопка</button>
