@@ -5,6 +5,7 @@ import { date } from "./date";
 export class TrainingT1 extends Training {
     name: string = 'ВИЗАЖ - Подиумный макияж. Боди-арт. Макияж новобрачной';
     trainer: string = 'Казьмина Лариса';
+    trainerSecond: string = 'Березина Нанара';
 
     datesFirst: date[] = [
         { date: '01.03 (10:00 – 16:00)', selected: false },

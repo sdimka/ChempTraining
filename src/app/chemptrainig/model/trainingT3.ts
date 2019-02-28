@@ -4,6 +4,7 @@ import { date } from './date';
 export class TrainingT3 extends Training {
     name: string =  'ЖЕНСКИЕ МАСТЕРА – МОДА, ПРИЧЕСКА НОВОБРАЧНОЙ'
     trainer: string =  'Надежда Самсонова, Екатерина Шафоростова'
+    trainerSecond: string = 'Тарасова Людмила';
 
     datesFirst: date[] = [
         { date: '05.03 (10:00 – 16:00)', selected: false },
@@ -15,7 +16,7 @@ export class TrainingT3 extends Training {
 
     ]
 
-    datesSecond: [
+    datesSecond: date[] = [
         { date: '15.04 (10:00 – 16:00)', selected: false },
         { date: '16.04 (10:00 – 16:00)', selected: false },
         { date: '17.04 (10:00 – 16:00)', selected: false },

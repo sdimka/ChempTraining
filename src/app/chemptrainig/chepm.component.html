@@ -17,7 +17,6 @@
         <mat-card-content>
             Адрес проведения тренировок: Санкт-Петербург, Заневский пр. д. 37, 2 этаж, Академия «Май» <br>
             Стоимость тренировок: <br>
-            Март: <br>
             Март: взрослые – 500 рублей; юниоры – бесплатно.<br>
             Вход на тренировки только по предварительной записи. <br>
 
@@ -54,17 +53,17 @@
                 </mat-form-field> -->
 
 
-                <mat-radio-group [(ngModel)]="classType">
+                <mat-radio-group [(ngModel)]="classType" (change)="onChanges()">
                     <mat-radio-button class="radio-button" value="1">Взрослые</mat-radio-button>
                     <mat-radio-button class="radio-button" value="2">Юниоры</mat-radio-button>
                 </mat-radio-group>
 
                 <mat-action-row>
-                    <button mat-button color="primary" (click)="nextStep()">Далее</button>
+                    <button mat-button color="primary" (click)="nextStep()" [disabled]=[firstStep]>Далее</button>
                 </mat-action-row>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle [disabled]="firstStep">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Направление тренировок:
@@ -79,7 +78,7 @@
                     <input matInput placeholder="Country">
                 </mat-form-field> -->
 
-                <mat-radio-group class="radio-group" [(ngModel)]="selectedTT">
+                <mat-radio-group class="radio-group" [(ngModel)]="selectedTT" (change)="onChanges()">
                     <mat-radio-button class="radio-button" *ngFor="let tt of trainingTypes.tType; let i = index"
                         [value]="i">
                         <!-- [value]="season" -->
@@ -89,11 +88,11 @@
 
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Пред.</button>
-                    <button mat-button color="primary" (click)="nextStepAndSet()">Далее</button>
+                    <button mat-button color="primary" (click)="nextStepAndSet()" [disabled]="secondStep">Далее</button>
                 </mat-action-row>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle [disabled]="secondStep">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Даты тренировок
@@ -109,19 +108,30 @@
                 <!-- <div *ngIf="selectedTrainig != undefined"> -->
                 <div *ngFor="let dateF of selectedTrainig.datesFirst">
 
-                    <mat-checkbox [(ngModel)]="dateF.selected"> </mat-checkbox>
+                    <mat-checkbox [(ngModel)]="dateF.selected" (change)="onChanges()"> </mat-checkbox>
                     {{dateF.date}}
 
                 </div>
+                Итоговые тренировочные сборы: <br>
+                Тренер: {{selectedTrainig.trainerSecond}} <br>
+                <div *ngFor="let dateS of selectedTrainig.datesSecond">
+
+                    <mat-checkbox [(ngModel)]="dateS.selected" (change)="onChanges()"> </mat-checkbox>
+                    {{dateS.date}}
+
+                </div>
+
+                <h4>Стоимость участия: {{sumTotal}}</h4>
+
                 <!-- </div> -->
 
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Пред.</button>
-                    <button mat-button color="primary" (click)="nextStep()">Далее</button>
+                    <button mat-button color="primary" (click)="nextStep()" [disabled]="thirStep">Далее</button>
                 </mat-action-row>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle [disabled]="thirStep">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Контактные данные
@@ -131,29 +141,30 @@
                         <mat-icon>face</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-
-                <div>
-                    <mat-form-field>
-                        <input matInput placeholder="Имя">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Фамилия">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <input matInput placeholder="Телефон">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="e-mail">
-                    </mat-form-field>
-                </div>
-
+                <form [formGroup]="secondFormGroup">
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="Имя" formControlName="secondCtrlN">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Фамилия" formControlName="secondCtrlFN">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="Телефон" formControlName="secondCtrlPH">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="e-mail" formControlName="secondCtrlEM">
+                        </mat-form-field>
+                    </div>
+                </form>
                 <!-- <mat-datepicker #picker></mat-datepicker> -->
 
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Пред.</button>
-                    <button mat-button color="primary" (click)="nextStep()">Отправить</button>
+                    <button mat-button color="primary" (click)="nextStep()"
+                        [disabled]="!secondFormGroup.valid">Отправить</button>
                 </mat-action-row>
             </mat-expansion-panel>
 

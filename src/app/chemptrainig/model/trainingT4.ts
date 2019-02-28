@@ -4,6 +4,8 @@ import { date } from './date';
 export class TrainingT4 extends Training {
     name: string =  'ЖЕНСКИЕ МАСТЕРА – ТЕХНИКА';
     trainer: string =  'Ванин Владислав';
+    trainerSecond: string = 'Тарасова Людмила';
+
 
     datesFirst: date[] = [
         { date: '05.03 (10:00 – 16:00)', selected: false },
@@ -14,7 +16,7 @@ export class TrainingT4 extends Training {
         { date: '16.03 (10:00 – 16:00)', selected: false },
     ]
 
-    datesSecond: [
+    datesSecond: date[] = [
         { date: '15.04 (10:00 – 16:00)', selected: false },
         { date: '16.04 (10:00 – 16:00)', selected: false },
         { date: '17.04 (10:00 – 16:00)', selected: false },

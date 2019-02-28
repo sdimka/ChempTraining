@@ -10,6 +10,7 @@ import { TrainingT4 } from "./model/trainingT4";
 import { TrainingT5 } from "./model/trainingT5";
 import { User } from './model/user';
 import { TrainigTypes } from './model/trainigTypes';
+import { element } from '@angular/core/src/render3';
 
 
 
@@ -20,7 +21,7 @@ import { TrainigTypes } from './model/trainigTypes';
 })
 
 export class ChempComponent implements OnInit {
-  
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
@@ -31,6 +32,12 @@ export class ChempComponent implements OnInit {
   selectedTT: number;
   selectedTrainig: Training;
 
+  sumTotal: number;
+
+  firstStep: boolean = true;
+  secondStep: boolean = true;
+  thirStep: boolean = true;
+
   user: User;
 
 
@@ -39,7 +46,10 @@ export class ChempComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrlN: ['', Validators.required],
+      secondCtrlFN: ['', Validators.required],
+      secondCtrlPH: ['', Validators.required],
+      secondCtrlEM: ['', Validators.required],
     });
 
     this.trainingTypes = new TrainigTypes();
@@ -57,7 +67,7 @@ export class ChempComponent implements OnInit {
     this.step++;
   }
 
-  nextStepAndSet(){
+  nextStepAndSet() {
     this.selectTrainig(this.selectedTT);
     this.step++;
   }
@@ -91,6 +101,65 @@ export class ChempComponent implements OnInit {
     }
   }
 
+  computeTotal(): number {
+    let i = 0;
+    this.thirStep = true;
+
+    if (this.classType == 1) {
+
+      this.selectedTrainig.datesSecond.forEach(element => {
+        if (element.selected && i > 0) {
+          i = i + 2000;
+        } else if (element.selected && i == 0) {
+          i = 3000
+          this.thirStep = false;
+        }
+      })
+
+      this.selectedTrainig.datesFirst.forEach(element => {
+        if (element.selected) {
+          i = i + 500;
+          this.thirStep = false;
+        }
+      });
+    }
+
+    if (this.classType == 2) {
+      this.selectedTrainig.datesSecond.forEach(element => {
+        if (element.selected && i > 0) {
+          i = i + 1000;
+        } else if (element.selected && i == 0) {
+          i = 1500
+          this.thirStep = false;
+        }
+      })
+      this.selectedTrainig.datesFirst.forEach(element => {
+        if (element.selected) {
+          this.thirStep = false;
+        }
+      });
+    }
+    return i;
+  }
+
+  onChanges(): void {
+    this.sumTotal = this.computeTotal();
+
+    if (this.classType != null) {
+      this.firstStep = false;
+    }
+    if (this.selectedTT != null) {
+      this.secondStep = false;
+    }
+
+
+
+    
+    // if (this.sumTotal > 0) {
+    //   (this.complexForm.controls['nominations']).setErrors(null)
+    // }
+  }
+
   testClick() {
     console.log(this.classType);
     //console.log(this.trainingTypes.tType);
@@ -103,6 +172,6 @@ export class ChempComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 }
