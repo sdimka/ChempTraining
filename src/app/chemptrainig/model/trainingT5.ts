@@ -4,7 +4,7 @@ import { date } from './date';
 export class TrainingT5 extends Training {
     name: string =  'МОДЕЛИРОВАНИЕ И ДИЗАЙН НОГТЕЙ';
     trainer: string =  'Тренировки проводятся по запросу участников';
-    trainerSecond : string = 'Заполните и отправьте форму. Вы свяжемся с вами для уточнения деталей';
+    trainerSecond : string = 'Заполните и отправьте форму. Мы свяжемся с вами для уточнения деталей';
 
 //    datesFirst = [
    //      { date: 'Заполните и отправьте форму. Вы свяжемся с вами для уточнения деталей', selected: false },

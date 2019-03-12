@@ -8,7 +8,8 @@ import { TrainingT2 } from "./model/trainingT2";
 import { TrainingT3 } from "./model/trainingT3";
 import { TrainingT4 } from "./model/trainingT4";
 import { TrainingT5 } from "./model/trainingT5";
-import { User } from './model/user';
+import { TrainingT6 } from "./model/trainingT6";
+import { ChempReg } from './model/ChempReg';
 import { TrainigTypes } from './model/trainigTypes';
 import { element } from '@angular/core/src/render3';
 
@@ -38,7 +39,7 @@ export class ChempComponent implements OnInit {
   secondStep: boolean = true;
   thirStep: boolean = true;
 
-  user: User;
+  chempReg: ChempReg;
 
 
   constructor(private _formBuilder: FormBuilder) {
@@ -46,10 +47,10 @@ export class ChempComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrlN: ['', Validators.required],
-      secondCtrlFN: ['', Validators.required],
-      secondCtrlPH: ['', Validators.required],
-      secondCtrlEM: ['', Validators.required],
+      name: ['', Validators.required],
+      surName: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.required],
     });
 
     this.trainingTypes = new TrainigTypes();
@@ -95,6 +96,10 @@ export class ChempComponent implements OnInit {
         break;
       }
       case 4: {
+        this.selectedTrainig = new TrainingT6();
+        break;
+      }
+      case 5: {
         this.selectedTrainig = new TrainingT5();
         break;
       }
@@ -160,13 +165,36 @@ export class ChempComponent implements OnInit {
     // }
   }
 
+  updateCurrenChemp(){
+    this.chempReg = Object.assign({}, this.secondFormGroup.value);
+    this.chempReg.classType = this.classType;
+    this.chempReg.trainingType = this.selectedTT;
+    this.chempReg.sumTotal = this.sumTotal;
+    this.chempReg.selectedTrainig = new Array();
+
+    this.selectedTrainig.datesFirst.forEach(element => {
+      if (element.selected){
+        this.chempReg.selectedTrainig.push(element.date);
+      }
+    })
+
+    this.selectedTrainig.datesSecond.forEach(element => {
+      if (element.selected){
+        this.chempReg.selectedTrainig.push(element.date);
+      }
+    })
+
+  }
+
   testClick() {
-    console.log(this.classType);
+    //console.log(this.classType);
     //console.log(this.trainingTypes.tType);
-    console.log(this.selectedTT);
-    console.log(this.selectedTrainig);
-    console.log(this.selectedTrainig.datesFirst);
-    console.log(this.selectedTrainig.name);
+    //console.log(this.selectedTT);
+    //console.log(this.selectedTrainig);
+    //console.log(this.selectedTrainig.datesFirst);
+    //console.log(this.selectedTrainig.name);
+    this.updateCurrenChemp();
+    console.log(this.chempReg);
 
 
   }

@@ -1,14 +1,16 @@
 import { Training } from './training';
 
-export class User {
+export class ChempReg {
     id : number;
     name : string;
     surName : string;
-    fName : string;
     phone : string;
     email : string;
 
-    catigory : number;
+    classType : number;
+    trainingType : number;
 
-    selectedTrainig : Training; 
+    sumTotal : number;
+
+    selectedTrainig : Array<string>; 
 }
