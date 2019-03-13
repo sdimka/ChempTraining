@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 import { Training } from './model/training';
 //import { date } from "./model/date";
@@ -13,6 +14,7 @@ import { ChempReg } from './model/ChempReg';
 import { TrainigTypes } from './model/trainigTypes';
 import { element } from '@angular/core/src/render3';
 
+import { ChempTrainService } from './chemp.service'
 
 
 @Component({
@@ -42,7 +44,7 @@ export class ChempComponent implements OnInit {
   chempReg: ChempReg;
 
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(@Inject(DOCUMENT) private document: any, private _chempTrainService: ChempTrainService, private _formBuilder: FormBuilder) {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -195,8 +197,26 @@ export class ChempComponent implements OnInit {
     //console.log(this.selectedTrainig.name);
     this.updateCurrenChemp();
     console.log(this.chempReg);
+    this._chempTrainService.addPart(this.chempReg)
+    .subscribe(response => {
+      console.log(response.url);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  registerPayment(){
+    this.updateCurrenChemp();
+    this._chempTrainService.addPart(this.chempReg)
+    .subscribe(response => {
+
+      console.log(response.url);
+      this.document.location.href = response.url;
 
 
+    }, error => {
+      console.log(error);
+    })
   }
 
   ngOnInit() {

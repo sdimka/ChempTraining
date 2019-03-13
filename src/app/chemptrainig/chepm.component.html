@@ -163,7 +163,7 @@
 
                 <mat-action-row>
                     <button mat-button color="warn" (click)="prevStep()">Пред.</button>
-                    <button mat-button color="primary" (click)="nextStep()"
+                    <button mat-button color="primary" (click)="registerPayment()"
                         [disabled]="!secondFormGroup.valid">Отправить</button>
                 </mat-action-row>
             </mat-expansion-panel>
@@ -172,4 +172,4 @@
     </mat-card>
 
 </div>
-<button mat-button color="warn" (click)="testClick()">Тестовая кнопка</button>
+<!-- <button mat-button color="warn" (click)="testClick()">Тестовая кнопка</button> -->
