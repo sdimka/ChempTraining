@@ -10,7 +10,8 @@ import { catchError } from 'rxjs/operators';
 export class ChempTrainService{
 
     constructor(private _httpService: HttpClient){}
-    private getUrl = 'http://localhost:8080/springTest_war/chemp_reg';
+    private getUrl = 'https://ssl.alliancebeauty.ru/ykpay/chemp_reg/';
+    //'http://localhost:8080/springTest_war/chemp_reg';
     
 
     getAllParts(): Observable<ChempReg[]>{

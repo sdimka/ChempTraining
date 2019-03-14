@@ -210,7 +210,7 @@ export class ChempComponent implements OnInit {
     this._chempTrainService.addPart(this.chempReg)
     .subscribe(response => {
 
-      console.log(response.url);
+      //console.log(response.url);
       this.document.location.href = response.url;
 
 
